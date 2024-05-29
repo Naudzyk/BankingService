@@ -10,24 +10,19 @@ import com.zhenya.ru.bank.models.UserPhones;
 import com.zhenya.ru.bank.repository.UserEmailRepository;
 import com.zhenya.ru.bank.repository.UserPhoneRepository;
 import com.zhenya.ru.bank.repository.UserRepository;
-import com.zhenya.ru.bank.secutity.JwtUtil;
+import com.zhenya.ru.bank.security.JwtUtil;
 import com.zhenya.ru.bank.service.SecurityService;
-import com.zhenya.ru.bank.service.UserEmailService;
-import com.zhenya.ru.bank.service.UserPhoneService;
-import com.zhenya.ru.bank.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor

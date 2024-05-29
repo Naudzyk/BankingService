@@ -1,15 +1,12 @@
 package com.zhenya.ru.bank.controller;
 
-import com.zhenya.ru.bank.dto.BalanceDTO;
 import com.zhenya.ru.bank.dto.TransferDTO;
 import com.zhenya.ru.bank.dto.UserEmailDTO;
 import com.zhenya.ru.bank.dto.UserPhoneDTO;
 import com.zhenya.ru.bank.exception.NotValidArgumentException;
 import com.zhenya.ru.bank.models.User;
-import com.zhenya.ru.bank.models.UserEmail;
-import com.zhenya.ru.bank.models.UserPhones;
 import com.zhenya.ru.bank.repository.UserRepository;
-import com.zhenya.ru.bank.secutity.SecurityUtils;
+import com.zhenya.ru.bank.security.SecurityUtils;
 import com.zhenya.ru.bank.service.MoneyTransferService;
 import com.zhenya.ru.bank.service.UserEmailService;
 import com.zhenya.ru.bank.service.UserPhoneService;
@@ -18,10 +15,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @RestController

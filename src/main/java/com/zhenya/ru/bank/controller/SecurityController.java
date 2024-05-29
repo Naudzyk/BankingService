@@ -1,21 +1,14 @@
 package com.zhenya.ru.bank.controller;
 
 import com.zhenya.ru.bank.dto.AuthDTO;
-import com.zhenya.ru.bank.dto.TokenDTO;
 import com.zhenya.ru.bank.dto.UserDTO;
-import com.zhenya.ru.bank.models.User;
-import com.zhenya.ru.bank.repository.UserRepository;
-import com.zhenya.ru.bank.secutity.JwtUtil;
 import com.zhenya.ru.bank.service.SecurityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RequestMapping("/auth")

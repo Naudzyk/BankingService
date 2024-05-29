@@ -1,6 +1,5 @@
-package com.zhenya.ru.bank.secutity;
+package com.zhenya.ru.bank.security;
 
-import com.zhenya.ru.bank.models.User;
 import lombok.experimental.UtilityClass;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContext;
