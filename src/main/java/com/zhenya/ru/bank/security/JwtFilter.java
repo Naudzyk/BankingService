@@ -23,17 +23,6 @@ public class JwtFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
     private final UserDetailsService userDetailsService;
 
-
-    /**
-     * This method is called for every request to check if the request has a valid JWT token.
-     * If the token is valid, it sets the authentication in the security context.
-     *
-     * @param request the HTTP request
-     * @param response the HTTP response
-     * @param filterChain the filter chain
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = null;
