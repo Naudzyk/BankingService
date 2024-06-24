@@ -24,12 +24,8 @@
 {
     "username":"username",
     "fullname":"fullname",
-    "email":[
-    {"email":"email@mail.ru"}
-    ],
-    "phone":[
-        {"phone": "000000000"}
-    ],
+    "email":"email@mail.ru", 
+    "phone": "000000000",
     "dateOfBirth":"0000-00-00",
     "balance":"0",
     "password":"password"

@@ -4,6 +4,7 @@ import com.zhenya.ru.bank.models.UserEmail;
 import com.zhenya.ru.bank.models.UserPhones;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,7 @@ public record UserDTO(
         String fullname,
         String email,
         String phone,
-        Date dateOfBirth,
+        LocalDate dateOfBirth,
         BigDecimal balance,
 
         BigDecimal initialBalance,

@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Service
@@ -36,7 +37,7 @@ public class SecurityServiceImpl implements SecurityService {
 
 
     @Override
-    public User register(String username, String fullname, String email, String phone, Date dateOfBirth, BigDecimal balance, String password) {
+    public User register(String username, String fullname, String email, String phone, LocalDate dateOfBirth, BigDecimal balance, String password) {
         if (email == null || phone == null ||
                 email.isEmpty() || phone.isEmpty()) {
             throw new NotValidArgumentException("Пароль или логин или email или username или fullname или date или balance или password не могут быть пустыми или состоять только из пробелов.");

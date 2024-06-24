@@ -6,6 +6,7 @@ import com.zhenya.ru.bank.service.FilterService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +17,7 @@ public class FilterServiceImpl implements FilterService {
 
 
     @Override
-    public List<User> findByBirthDateGreaterThan(Date birthdate) {
+    public List<User> findByBirthDateGreaterThan(LocalDate birthdate) {
         return userRepository.findByDateOfBirthGreaterThan(birthdate);
     }
 

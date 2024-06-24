@@ -2,10 +2,12 @@ package com.zhenya.ru.bank.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class User {
     private String password;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "balance")
     private BigDecimal balance;
@@ -48,6 +50,7 @@ public class User {
     private Role role = Role.USER;
 
 
+    public User() {
 
-
+    }
 }
