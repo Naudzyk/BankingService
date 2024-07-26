@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -27,6 +28,7 @@ import org.springframework.web.cors.CorsConfiguration;
 @EnableWebSecurity
 @RequiredArgsConstructor
 @EnableMethodSecurity
+@EnableScheduling
 public class SpringConfig {
 
     private final JwtFilter jwtFilter;

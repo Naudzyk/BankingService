@@ -1,20 +1,18 @@
 package com.zhenya.ru.bank.repository;
 
 import com.zhenya.ru.bank.models.User;
-import com.zhenya.ru.bank.models.UserEmail;
-import com.zhenya.ru.bank.models.UserPhones;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<User,Integer> {
+public interface UserRepository extends JpaRepository<User,Long> {
     User findByUsername(String username);
 
     Optional<User> findUserByUsername(String username);
@@ -22,15 +20,9 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     Boolean existsUserByUsername(String username);
 
     User getUserByUsername (String username);
-    List<User> findByDateOfBirthGreaterThan( Date birthdate);
 
 
-    Object findAllById(int id);
-
-
-    @Query("SELECT u FROM User u WHERE u.dateOfBirth > :birthdate ORDER BY u.dateOfBirth")
-    List<User> findByBirthDateGreaterThan(Date birthdate);
-
+    Object findAllById(long id);
 
     @Transactional
     @Modifying
@@ -38,6 +30,6 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     List<User> findUserByFullname( String fullName);
 
 
-
+    Optional<User> findById(Long id);
 
 }

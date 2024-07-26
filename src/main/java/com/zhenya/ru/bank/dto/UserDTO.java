@@ -1,18 +1,19 @@
 package com.zhenya.ru.bank.dto;
 
-import com.zhenya.ru.bank.models.UserEmail;
-import com.zhenya.ru.bank.models.UserPhones;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+;
 
 public record UserDTO(
         String username,
         String fullname,
         String email,
         String phone,
-        Date dateOfBirth,
+        @JsonFormat(pattern = "yyyy-MM-dd")
+        LocalDate dateOfBirth,
         BigDecimal balance,
 
         BigDecimal initialBalance,
