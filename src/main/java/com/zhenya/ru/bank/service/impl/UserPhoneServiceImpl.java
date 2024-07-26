@@ -1,60 +1,65 @@
 package com.zhenya.ru.bank.service.impl;
 
-import com.zhenya.ru.bank.exception.NotValidArgumentException;
-import com.zhenya.ru.bank.exception.SecurityException;
-import com.zhenya.ru.bank.exception.UserNotFoundException;
+
 import com.zhenya.ru.bank.models.User;
 import com.zhenya.ru.bank.models.UserPhones;
 import com.zhenya.ru.bank.repository.UserPhoneRepository;
 import com.zhenya.ru.bank.repository.UserRepository;
 import com.zhenya.ru.bank.service.UserPhoneService;
-import com.zhenya.ru.bank.service.UserService;
-import jakarta.validation.Valid;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserPhoneServiceImpl implements UserPhoneService {
     private final UserPhoneRepository userPhoneRepository;
     private final UserRepository userRepository;
-    private final UserService userService;
 
 
     @Override
-    public String save(String phone, String username) {
-        if(userPhoneRepository.existsUserPhonesByPhone(phone)){
-            throw new SecurityException("Такой phone уже зарегестрирован");
+    public ResponseEntity<?> save(String phone, String username) {
+        if(!userPhoneRepository.existsUserPhonesByPhone(phone)) {
+            User user = userRepository.getUserByUsername(username);
+            UserPhones newuserPhone = UserPhones.builder()
+                    .user(user)
+                    .phone(phone)
+                    .build();
+
+            userPhoneRepository.save(newuserPhone);
+            return ResponseEntity.ok("Добавлен phone " + phone);
         }
-        User user = userRepository.getUserByUsername(username);
-         if (user == null) {
-        throw new IllegalArgumentException("Пользователь с таким именем не найден");
-    }
-
-        UserPhones userPhones = new UserPhones();
-        userPhones.setUser(user);
-        userPhones.setPhone(phone);
-
-        userPhoneRepository.save(userPhones);
-        return phone;
+        return ResponseEntity.badRequest().body("Ошибка такой номер возможно зарегестрирован");
     }
 
     @Override
-    public void deletePhone( String phone) {
-       userPhoneRepository.deleteByPhone(phone);
+    public ResponseEntity<?> deletePhone(String phone,Long id) {
 
-
+        if (userPhoneRepository.findUserIdByPhone(phone) == id) {
+            if (userPhoneRepository.deleteByPhone(phone) == 1) {
+                return ResponseEntity.ok("Телефон удален :" + phone);
+                    }else{
+                return ResponseEntity.badRequest().body("Некоректный телефон");
+            }
+        } else {
+            return ResponseEntity.badRequest().body("Некоректный телефон");
+        }
     }
+
 
 
 
     @Override
+    @Transactional(readOnly = true)
+    @Cacheable(
+            value = "UserPhoneService::getPhone",
+            key = "#user"
+    )
     public List<String> getPhone(User user) {
         List<String> phone = new ArrayList<>();
         List<UserPhones> userPhones = userPhoneRepository.findUserPhonesByUser(user);
@@ -65,12 +70,4 @@ public class UserPhoneServiceImpl implements UserPhoneService {
         return phone;
     }
 
-     private Integer getIdByUsername(String username){
-        Optional<User> userOptional = userService.getUserByUsername(username);
-        if(userOptional.isPresent()) {
-            return userOptional.get().getId();
-        } else{
-            throw new UserNotFoundException("Пользователь не найден");
-        }
-    }
 }

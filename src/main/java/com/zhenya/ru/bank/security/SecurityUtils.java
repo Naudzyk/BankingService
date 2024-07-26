@@ -8,10 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 @UtilityClass
 public class SecurityUtils {
-     private SecurityContext securityContext;
 
     public boolean isValidLogin(String username) {
-        securityContext = SecurityContextHolder.getContext();
+        SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
 
         if (authentication == null) {

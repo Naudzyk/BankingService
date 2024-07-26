@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3-create-table-user-phones
+      author: zhenya
+      changes:
+        - createTable:
+            tableName: user_phones
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: phone_number
+                  type: VARCHAR(20)
+              - column:
+                  name: user_id
+                  type: INTEGER
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseTableName: user_phones
+            baseColumnNames: user_id
+            constraintName: fk_user_phones_users
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE
+

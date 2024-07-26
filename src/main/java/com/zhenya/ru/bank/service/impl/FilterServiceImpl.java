@@ -4,32 +4,42 @@ import com.zhenya.ru.bank.models.User;
 import com.zhenya.ru.bank.repository.UserRepository;
 import com.zhenya.ru.bank.service.FilterService;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.Hibernate;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
+
 import java.util.List;
-import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class FilterServiceImpl implements FilterService {
     private final UserRepository userRepository;
 
 
-    @Override
-    public List<User> findByBirthDateGreaterThan(Date birthdate) {
-        return userRepository.findByDateOfBirthGreaterThan(birthdate);
-    }
-
-
 
     @Override
+    @Transactional(readOnly = true)
+    @Cacheable(
+            value = "FilterService::findUserByFullName",
+            key = "#fullName"
+    )
     public List<User> findUserByFullName(String fullName) {
         return userRepository.findUserByFullname(fullName);
     }
 
     @Override
+    @Transactional(readOnly = true)
+    @Cacheable(
+            value = "FilterService::getAllUsers"
+    )
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+         List<User> users = userRepository.findAll();
+    for (User user : users) {
+    Hibernate.initialize(user.getPhone());
+    }
+    return users;
+
     }
 
 

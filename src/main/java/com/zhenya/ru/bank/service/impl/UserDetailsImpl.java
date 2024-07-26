@@ -10,7 +10,7 @@ import java.util.Collection;
 @Data
 @AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
-    private int id;
+    private long id;
     private String username;
     private String fullname;
     private String password;

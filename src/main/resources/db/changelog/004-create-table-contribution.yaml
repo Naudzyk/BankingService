@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 4-create-table-contribution
+      author: zhenya
+      changes:
+        - createTable:
+            tableName: contribution
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: balance
+                  type: DECIMAL(19, 2)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: initial_balance
+                  type: DECIMAL(19, 2)
+                  constraints:
+                    nullable: true
+        - addForeignKeyConstraint:
+            baseTableName: contribution
+            baseColumnNames: user_id
+            constraintName: fk_contribution_user
+            referencedTableName: users
+            referencedColumnNames: id
+            onDelete: CASCADE
+            onUpdate: CASCADE

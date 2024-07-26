@@ -1,0 +1,34 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1-create-table-users
+      author: zhenya
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(255)
+              - column:
+                  name: fullname
+                  type: VARCHAR(255)
+              - column:
+                  name: password
+                  type: VARCHAR(255)
+              - column:
+                  name: date_of_birth
+                  type: DATE
+              - column:
+                  name: balance
+                  type: DECIMAL(10,2)
+              - column:
+                  name: role_user
+                  type: VARCHAR(50)
+
