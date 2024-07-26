@@ -9,12 +9,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Repository
-public interface UserPhoneRepository extends JpaRepository<UserPhones,Integer> {
+public interface UserPhoneRepository extends JpaRepository<UserPhones,Long> {
 
-    void deleteById(Integer id);
+    void deleteById(Long id);
 
     List<UserPhones> findUserPhonesByUser(User user);
     Boolean existsUserPhonesByPhone (String phone);
@@ -23,9 +23,10 @@ public interface UserPhoneRepository extends JpaRepository<UserPhones,Integer> {
     @Transactional
     @Modifying
     @Query("DELETE FROM UserPhones e WHERE e.phone = :phone")
-    void deleteByPhone(String phone);
+    Integer deleteByPhone(String phone);
 
-
+    @Query("SELECT e.user.id FROM UserPhones e WHERE e.phone = :phone")
+    Long findUserIdByPhone(String phone);
 
 
 }

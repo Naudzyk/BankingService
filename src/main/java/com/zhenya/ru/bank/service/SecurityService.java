@@ -1,17 +1,14 @@
 package com.zhenya.ru.bank.service;
 
 import com.zhenya.ru.bank.dto.TokenDTO;
-import com.zhenya.ru.bank.models.User;
-import com.zhenya.ru.bank.models.UserEmail;
-import com.zhenya.ru.bank.models.UserPhones;
+import org.springframework.http.ResponseEntity;
 
 import java.math.BigDecimal;
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
 
 public interface SecurityService {
 
-    User register(String username , String fullname, String email, String phone, Date date, BigDecimal balance, String password);
+    ResponseEntity<?> register(String username , String fullname, String email, String phone, LocalDate date, BigDecimal balance, String password);
 
-    TokenDTO authorize(String username, String password);
+    ResponseEntity<TokenDTO> authorize(String username, String password);
 }
