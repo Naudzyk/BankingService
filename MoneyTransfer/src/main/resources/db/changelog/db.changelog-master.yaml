@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: yourname
+      changes:
+        - createTable:
+            tableName: moneytransfer
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: clientusername
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: clientrecipient
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amountofmoney
+                  type: decimal(19,2)
+                  constraints:
+                    nullable: false
