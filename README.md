@@ -10,8 +10,17 @@
 - Возможность сделать вклад
 - Другие полезные функции
 
+## Использованные приложения и технологии
+
+- Spring
+- PostgreSQL
+- Docker 
+- Kafka 
+- Redis
+
 ## Запуск приложения
 - Для начала нужно поднять Docker контейнеры.
+- Для работы с Kafka можно запустить MoneyTransferService (https://github.com/Naudzyk/MoneyTransfer-service-for-BankingService).
 - Делать запросы можно через Postman.
 - После авторизации пользователя нужно использовать JWT token.
 

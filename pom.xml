@@ -177,7 +177,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.zhenya.ru.bank.MainClass</mainClass>
+                            <mainClass>com.zhenya.ru.bank.BankApplication</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
