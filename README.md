@@ -19,9 +19,9 @@
 - Redis
 
 ## Запуск приложения
-- Для начала нужно поднять Docker контейнеры.
+- Для начала нужно поднять Docker контейнеры (это можно сделать с помощью команды docker-compose up --build в терминале).
 - Для работы с Kafka можно запустить MoneyTransferService (https://github.com/Naudzyk/MoneyTransfer-service-for-BankingService).
-- Делать запросы можно через Postman.
+- Делать запросы можно через Postman(http://localhost:8181).
 - После авторизации пользователя нужно использовать JWT token.
 
 ## API Endpoints
